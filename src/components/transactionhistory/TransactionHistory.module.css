@@ -1,0 +1,31 @@
+.transactionHistoryTable {
+    width: 100%;
+    line-height: 2;
+    border-collapse: collapse;
+}
+
+.headerCell {
+    background-color: rgb(37, 37, 37);
+    color: white;
+    width: calc(100% / 3);
+}
+
+.row:nth-child(even) {
+    background-color: lightgray;
+}
+
+.row :nth-child(1) {
+    text-transform: capitalize;
+    padding-left: 40px;
+}
+
+.row :nth-child(2),
+.row :nth-child(3) {
+    text-align: center;
+}
+
+.headerCell,
+.dataCell {
+    border: 1px solid black;
+    padding: 3px;
+}
