@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import 'modern-normalize';
 import './App.css';
 import Description from '../description/Description.jsx';
 import Options from '../options/Options.jsx';
