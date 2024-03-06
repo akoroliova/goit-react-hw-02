@@ -9,13 +9,11 @@ const Feedback = ({
 }) => {
   return (
     <div className={css.feedbackContainer}>
-      <p className={css.feedbackCounterText}>Good: {numberOfGood}</p>
-      <p className={css.feedbackCounterText}>Neutral: {numberOfNeutral}</p>
-      <p className={css.feedbackCounterText}>Bad: {numberOfBad}</p>
-      <p className={css.feedbackCounterText}>Total: {totalFeedback}</p>
-      <p className={css.feedbackCounterText}>
-        Positive: {totalGoodPercentage}%
-      </p>
+      <p>Good: {numberOfGood}</p>
+      <p>Neutral: {numberOfNeutral}</p>
+      <p>Bad: {numberOfBad}</p>
+      <p>Total: {totalFeedback}</p>
+      <p>Positive: {totalGoodPercentage}%</p>
     </div>
   );
 };

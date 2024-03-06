@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import 'modern-normalize';
 import './App.css';
 import Description from '../description/Description.jsx';
 import Options from '../options/Options.jsx';
-import Notification from './Notification/Notification.jsx';
+import Notification from '../notification/Notification.jsx';
 import Feedback from '../feedback/Feedback.jsx';
 
 function App() {
