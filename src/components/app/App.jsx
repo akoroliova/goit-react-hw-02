@@ -1,23 +1,69 @@
+import { useState } from 'react';
 import './App.css';
-import Profile from '../profile/Profile.jsx';
-import { userData } from '../../userData.json';
-import FriendList from '../friendlist/FriendList.jsx';
-import { friends } from '../../friendsData.json';
-import TransactionHistory from '../transactionhistory/TransactionHistory.jsx';
-import { transactions } from '../../transactions.json';
+import Description from '../description/Description.jsx';
+import Options from '../options/Options.jsx';
+import Notification from './Notification/Notification.jsx';
+import Feedback from '../feedback/Feedback.jsx';
 
 function App() {
+  const [feedback, setFeedback] = useState({
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  });
+
+  const updateFeedback = feedbackType => {
+    if (feedbackType === 'good') {
+      setFeedback({
+        ...feedback,
+        good: feedback.good + 1,
+      });
+    } else if (feedbackType === 'neutral') {
+      setFeedback({
+        ...feedback,
+        neutral: feedback.neutral + 1,
+      });
+    } else if (feedbackType === 'bad') {
+      setFeedback({
+        ...feedback,
+        bad: feedback.bad + 1,
+      });
+    } else if (feedbackType === 'reset') {
+      setFeedback({
+        ...feedback,
+        good: 0,
+        neutral: 0,
+        bad: 0,
+      });
+    }
+  };
+
+  const totalFeedback = Object.values(feedback).reduce(
+    (sum, currentValue) => sum + currentValue,
+    0
+  );
+
+  const totalGoodPercentage = Math.round(
+    ((feedback.good + feedback.neutral) / totalFeedback) * 100
+  );
+
   return (
     <>
-      <Profile
-        name={userData.username}
-        tag={userData.tag}
-        location={userData.location}
-        image={userData.avatar}
-        stats={userData.stats}
-      />
-      <FriendList friends={friends} />
-      <TransactionHistory items={transactions} />
+      <Description />
+
+      <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} />
+
+      {totalFeedback === 0 ? (
+        <Notification />
+      ) : (
+        <Feedback
+          numberOfGood={feedback.good}
+          numberOfNeutral={feedback.neutral}
+          numberOfBad={feedback.bad}
+          totalFeedback={totalFeedback}
+          totalGoodPercentage={totalGoodPercentage}
+        />
+      )}
     </>
   );
 }
