@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     window.localStorage.setItem(
       'saved-feedback-object',
-      JSON.stringify({ feedback })
+      JSON.stringify(feedback)
     );
   }, [feedback]);
 
@@ -55,7 +55,7 @@ function App() {
   };
 
   const totalFeedback = Object.values(feedback).reduce(
-    (sum, currentValue) => sum + currentValue,
+    (prev, currentValue) => prev + currentValue,
     0
   );
 
